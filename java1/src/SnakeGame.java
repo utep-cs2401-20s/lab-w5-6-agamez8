@@ -9,7 +9,6 @@ public class SnakeGame {
     //DEFAULT CONSTRUCTORS (named after class)
     public SnakeGame(){
         game = new boolean[1][1];
-        //return???
     }
 
     public SnakeGame(boolean[][] z, int x, int y){
@@ -66,6 +65,9 @@ public class SnakeGame {
     }
 
     public int[] findTailRecursive(int x, int y){
+        //getRecursiveChecks--;
+        //find head
+
         return new int[0];
 
     }
