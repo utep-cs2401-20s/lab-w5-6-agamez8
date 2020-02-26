@@ -11,15 +11,16 @@ public class SnakeGame {
         game = new boolean[1][1];
     }
 
-    public SnakeGame(boolean[][] z, int x, int y){
-        game = z;
+    public SnakeGame(boolean[][] board, int x, int y){
+        game = board;
         headPosition[0] = x;
         headPosition[1] = y;
     }
 
-    //METHODS
+    //METHODS 1
+    //modifying exhaustive checks
     public int[] findTailExhaustive(){
-        int[] result = {0, 0, 0};
+        int[] result = new int[3]; //{0, 0, 0};
         for(int i = 0; i < game.length; i++){
             for(int j = 0; i < game.length; j++){
                 boolean cell = game[i][j];
@@ -40,6 +41,7 @@ public class SnakeGame {
                 }
             }
         }
+        exhaustiveChecks++;
         return result;
     }
 
@@ -64,32 +66,37 @@ public class SnakeGame {
         return neighbors;
     }
 
-    public int[] findTailRecursive(int x, int y){
-        //getRecursiveChecks--;
+    //METHOD 2
+    //reset counters
+    //both parameters for head
+    public int[] findTailRecursive(){
+        resetCounters();
+        int[] result = findTailRecursive(headPosition, headPosition);
+        return new int[]{result[0], result[1], result[2]};
+
+        //getRecursiveChecks++;
         //find head
-
-        return new int[0];
-
     }
 
     private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
-        return new int[0];
+        int[] result = new int[2];
+        recursiveChecks++;
+        return result;
     }
 
     private void resetCounters(){
-        //recursiveCheck = 0
-        //exhaustiveCheck = 0
+        //called
+        recursiveChecks = 0;
+        exhaustiveChecks = 0;
     }
 
     //CURRENT CHECKS
-    private static int getRecursiveChecks(){
-        //++
-        return 0;
+    public static int getRecursiveChecks(){
+        return recursiveChecks;
     }
 
-    private static int getExhaustiveChecks(){
-        //++
-        return 0;
+    public static int getExhaustiveChecks(){
+        return exhaustiveChecks;
     }
 
 }
